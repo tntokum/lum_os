@@ -2,7 +2,7 @@
 #![no_main]
 
 use esp_backtrace as _;
-use esp_hal::prelude::*;
+use esp_hal::{otg_fs::Usb, prelude::*};
 use log::info;
 
 use embassy_executor::Spawner;
@@ -39,11 +39,17 @@ async fn main(spawner: Spawner) {
     // TODO: Spawn some tasks
     let _ = spawner;
 
+    // set USB as keyboard input
+    // let usb = Usb::new(peripherals.USB0, peripherals.GPIO20, peripherals.GPIO19);
+    // let mut ep_out_buffer = [0u8; 1024];
+    // let config = esp_hal::otg_fs::asynch::Config::default();
+
+    // let driver = esp_hal::otg_fs::asynch::Driver::new(usb, &mut ep_out_buffer, config);
+
     loop {
         info!("Hello world!");
         Timer::after(Duration::from_secs(1)).await;
     }
 
     // for inspiration have a look at the examples at https://github.com/esp-rs/esp-hal/tree/v0.22.0/examples/src/bin
-
 }
